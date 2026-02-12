@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestro Universo - 14 de Febrero</title>
+    <link rel="stylesheet" href="../styles/universo.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Dancing+Script:wght@600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="universe-container">
+        <!-- Canvas para estrellas animadas -->
+        <canvas id="stars-canvas"></canvas>
+
+        <div class="solar-system">
+            <!-- El Sol -->
+            <div class="sun">
+                <div class="sun-glow"></div>
+                <span class="tooltip">Tú eres mi Sol ☀️</span>
+            </div>
+
+            <!-- Mercurio -->
+            <div class="orbit orbit-mercury">
+                <div class="planet mercury">
+                    <span class="tooltip">Tu sonrisa ilumina mi día</span>
+                </div>
+            </div>
+
+            <!-- Venus -->
+            <div class="orbit orbit-venus">
+                <div class="planet venus">
+                    <span class="tooltip">Eres mi musa y mi arte</span>
+                </div>
+            </div>
+
+            <!-- Tierra -->
+            <div class="orbit orbit-earth">
+                <div class="moon-orbit">
+                    <div class="moon"></div>
+                </div>
+                <div class="planet earth">
+                    <span class="tooltip">Mi mundo eres tú 🌎</span>
+                </div>
+            </div>
+
+            <!-- Marte -->
+            <div class="orbit orbit-mars">
+                <div class="planet mars">
+                    <span class="tooltip">Mi pasión por ti es infinita</span>
+                </div>
+            </div>
+
+            <!-- Júpiter -->
+            <div class="orbit orbit-jupiter">
+                <div class="planet jupiter">
+                    <span class="tooltip">Tu amor es lo más grande que tengo</span>
+                </div>
+            </div>
+
+            <!-- Saturno -->
+            <div class="orbit orbit-saturn">
+                <div class="planet saturn">
+                    <div class="ring"></div>
+                    <span class="tooltip">Me tienes rodeado de amor</span>
+                </div>
+            </div>
+
+            <!-- Urano -->
+            <div class="orbit orbit-uranus">
+                <div class="planet uranus">
+                    <span class="tooltip">Un amor único y mágico</span>
+                </div>
+            </div>
+
+            <!-- Neptuno -->
+            <div class="orbit orbit-neptune">
+                <div class="planet neptune">
+                    <span class="tooltip">Navegaría todos los mares por ti</span>
+                </div>
+            </div>
+
+            <!-- Plutón (Corazón) -->
+            <div class="orbit orbit-pluto">
+                <div class="planet pluto">
+                    <span class="tooltip">Mi amor por ti es eterno ❤️</span>
+                </div>
+            </div>
+        </div>
+
+        <a href="../index.html" class="back-link">⬅ Volver al Castillo</a>
+    </div>
+
+    <script src="../js/universo.js"></script>
+</body>
+
+</html>

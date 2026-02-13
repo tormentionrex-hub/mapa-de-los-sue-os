@@ -46,36 +46,42 @@ document.addEventListener('DOMContentLoaded', () => {
     // Añadir clase inicial
     revealElements.forEach(el => el.classList.add('reveal'));
 
-    const revealOnScroll = () => {
+    // === OPTIMIZACIÓN: ANIMACIONES ON SCROLL (REVEAL + PARALLAX) ===
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    const performAnimations = () => {
+        const scrolled = lastScrollY;
         const windowHeight = window.innerHeight;
-        const elementVisible = 150;
 
-        revealElements.forEach((el) => {
-            const elementTop = el.getBoundingClientRect().top;
-
-            if (elementTop < windowHeight - elementVisible) {
-                el.classList.add('active');
-            } else {
-                // Opcional: quitar la clase para que se anime cada vez
-                // el.classList.remove('active'); 
-            }
-        });
-    };
-
-    window.addEventListener('scroll', revealOnScroll);
-
-    // Disparar una vez al inicio para elementos ya visibles
-    revealOnScroll();
-
-    // Efecto Parallax muy sutil para las nubes al hacer scroll
-    window.addEventListener('scroll', () => {
-        const scrolled = window.scrollY;
+        // Parallax
         const clouds1 = document.querySelector('.clouds-1');
         const clouds2 = document.querySelector('.clouds-2');
-
         if (clouds1) clouds1.style.transform = `translateX(${scrolled * 0.1}px)`;
         if (clouds2) clouds2.style.transform = `translateX(-${scrolled * 0.2}px)`;
+
+        // Reveal Elements
+        const elementVisible = 150;
+        revealElements.forEach((el) => {
+            const elementTop = el.getBoundingClientRect().top;
+            if (elementTop < windowHeight - elementVisible) {
+                el.classList.add('active');
+            }
+        });
+
+        ticking = false;
+    };
+
+    window.addEventListener('scroll', () => {
+        lastScrollY = window.scrollY;
+        if (!ticking) {
+            window.requestAnimationFrame(performAnimations);
+            ticking = true;
+        }
     });
+
+    // Disparar una vez al inicio
+    performAnimations();
 
     // === CARRUSEL ===
     const track = document.querySelector('.carousel-track');
@@ -144,15 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Auto-play opcional
-        setInterval(() => {
-            const currentSlide = track.querySelector('.current-slide');
-            const nextSlide = currentSlide.nextElementSibling || slides[0];
-            const currentDot = dotsNav.querySelector('.current-slide');
-            const nextDot = currentDot.nextElementSibling || dots[0];
-
-            // Solo avanzar si el usuario no está interactuando (opcional, aquí avanza siempre)
-            moveToSlide(track, currentSlide, nextSlide);
-            updateDots(currentDot, nextDot);
-        }, 5000); // Cambio cada 5 segundos
+        // Auto-play eliminado a petición del usuario
+        // La navegación será solo por flechas o dots
     }
 });
